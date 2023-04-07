@@ -3,6 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getbusdetails, newbooking } from "../../api-helpers/api-helpers";
 //import Payment from "../Payment";
+import visa from './visa.png';
 
 const Booking = ()=>{
     const navigate = useNavigate();
@@ -27,9 +28,9 @@ const Booking = ()=>{
     };
     const check = (e)=>{
         console.log(e);
-        if(e.target[1].value.match(/^(?:4[0-9]{15})$/)){
-            if(e.target[2].value.match(/^(?:[0-9]{3})$/)){
-                if(new Date(e.target[3].value) < dat){
+        if(e.target[2].value.match(/^(?:4[0-9]{15})$/)){
+            if(e.target[3].value.match(/^(?:[0-9]{3})$/)){
+                if(new Date(e.target[4].value) < dat){
                     alert("Expiry date incorrect");
                     return false;
                 }
@@ -63,7 +64,7 @@ const Booking = ()=>{
                 console.log(inputs);
                 // <Payment seatnumber={inputs.seatnumber} date={bus.date} id={bus._id} from={bus.from} to={bus.to} number={bus.number} />
                 // navigate('/payment');
-                newbooking({...inputs,bus:bus._id, date:bus.date, busnumber:bus.number, from:bus.from, to:bus.to}).then((res)=>console.log(res))
+                newbooking({...inputs,bus:bus._id, date:bus.date, busnumber:bus.number, from:bus.from, to:bus.to, fare:fare}).then((res)=>console.log(res))
                 .catch((err)=>alert("Booking unsuccessful"));
                 alert("Booking succesful");
                 navigate("/user");
@@ -74,15 +75,16 @@ const Booking = ()=>{
     return (
         <div>
            {bus && <Fragment>
-                <Typography padding={3} fontFamily="georgia" varient="h4" textAlign={"center"}>
+                <Typography margin={'auto'} padding={3} fontFamily="georgia" varient="h4" textAlign={"center"} sx={{bgcolor:"inherit"}} width={"50%"} >
                     Book tickets of bus:<b> {bus.number} </b><br/>
                     From: {bus.from}<br/>
                     To: {bus.to}<br/>
                     Date: {new Date(bus.date).toDateString()}<br/>
-                    Available: ({bus.Totalseats - bus.bookings.length}) seats <br/>
+                    Available: ({bus.Totalseats - bus.booked}) seats <br/>
                     Price: {bus.price}<br/>
+                    
                 </Typography>
-                <Box width={"50%"} paddingTop={3} margin={'auto'} >
+                <Box width={"50%"} paddingTop={3} margin={'auto'} sx={{bgcolor:"lavender"}}>
                 <form onSubmit={handleSubmit} >
                     <Box padding={5}
                     margin={"auto"} 
@@ -100,8 +102,18 @@ const Booking = ()=>{
                         margin="normal"
                         variant="standard"/>
                     <Typography padding={3} fontFamily="georgia" varient="h4" textAlign={"center"}>
-                        Total Fare: {fare}
+                        Total Fare: {fare} <br />
+                        <b>Payment Details</b>
                     </Typography>
+                    <FormLabel>
+                            Card holder name
+                        </FormLabel>
+                        <TextField 
+                        name="cardholder"
+                        type={"text"} 
+                        margin="normal"
+                        variant="standard" required/>
+                    <Box sx={{backgroundImage:{visa}}} margin={'auto'} ></Box>
                     <FormLabel>
                             Card number
                         </FormLabel>

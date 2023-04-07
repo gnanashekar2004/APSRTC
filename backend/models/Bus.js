@@ -21,6 +21,10 @@ const busschema = new Schema({
     price:{
         type: Number,
         required: true
+    },
+    booked:{
+        type: Number,
+        required: true
     }
 });
 

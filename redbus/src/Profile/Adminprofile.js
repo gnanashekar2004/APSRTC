@@ -51,8 +51,8 @@ const Adminprofile = ()=>{
                         >
                             <List>
                                 {users.map((user, index)=>(
-                            
-                                    <ListItem sx={{bgcolor: "#00d386",color:"white",textAlign:"center",margin:1}}>
+                            // #00d386
+                                    <ListItem sx={{ margin:3, Width: 140, color:"black", backgroundColor:"#00d386",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
                                         <ListItemText sx={{margin:1,width:"auto",textAlign:"left"}} >
                                             Username: {user.username}<br/>
                                         </ListItemText>
@@ -87,12 +87,13 @@ const Adminprofile = ()=>{
                             <List>
                                 {bookings.map((booking, index)=>(
                             
-                                    <ListItem sx={{bgcolor: "#00d386",color:"white",textAlign:"center",margin:1}}>
-                                        <ListItemText sx={{margin:1,width:"auto",textAlign:"left"}} >
+                                    <ListItem sx={{ margin:3, Width: 140, height: 200, color:"#03a9f4", backgroundColor:"lightcyan",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
+                                        <ListItemText sx={{margin:1,width:"auto",textAlign:"left", color:'green' }} >
                                             Date: {new Date(booking.date).toDateString()}<br/>
                                             No. of seats: {booking.seatnumber}<br/>
                                             Bus Number: {booking.busnumber}<br/>
-                                            From: {booking.from} <br/>  To: {booking.to}
+                                            From: {booking.from} <br/>  To: {booking.to} <br/>
+                                            Amount paid: {booking.fare}
                                         </ListItemText>
                                     </ListItem>
                                 ))}
