@@ -1,0 +1,22 @@
+.container{
+    display:flex;
+    flex-direction: row;
+}
+
+.searchcard{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    background-color: rgba(0,0,0,0.65) ;
+    margin: 25vh 5vw 15vh 5vw;
+    border-radius: 3%;
+    padding-top: 5vh;
+}
+
+.text{
+    display:flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 38vh 0vw 0vh 0vw;
+    text-align: center;
+}
