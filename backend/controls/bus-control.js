@@ -177,3 +177,32 @@ export const updatebus = async(req,res,next)=>{
     }
     return res.status(200).json({id:bus._id,message:"Updated bus succesfully"});
 };
+
+export const busbookedupdate = async(req,res,next)=>{
+    const id = req.params.id;
+    const { booked} = req.body;
+    let bus;
+    try{
+        bus = await Bus.findByIdAndUpdate(id,{ booked})
+    }catch(err){
+        return console.log(err);
+    }
+    if(!bus){
+        return res.status(300).json({message:"Error updating bus!!"});
+    }
+    return res.status(200).json({id:bus._id,message:"Updated bus succesfully"});
+};
+
+
+export const bookedupdate = async(req,res,next)=>{
+    let bus;
+    try{
+        bus = await Bus.updateMany({ booked: 0})
+    }catch(err){
+        return console.log(err);
+    }
+    if(!bus){
+        return res.status(300).json({message:"Error updating bus!!"});
+    }
+    return res.status(200).json({message:"Updated buses succesfully"});
+};

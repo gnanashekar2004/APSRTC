@@ -14,7 +14,7 @@ const Bus = ()=>{
         <Box margin={"auto"} marginTop={0}>
             <Typography variant={"h4"} width={"100%"} bgcolor="lightgreen" textAlign={"center"} padding={2}>All Buses</Typography>
             <Box width={"80%"} margin="auto" display={"flex"} justifyContent="center" flexWrap={"wrap"}>
-                {buses && buses.map((bus, index)=><Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price}/>)}
+                {buses && buses.map((bus, index)=><Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price} booked={bus.booked} />)}
             </Box> 
         </Box>
     );

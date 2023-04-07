@@ -14,7 +14,7 @@ import { lightBlue } from "@mui/material/colors";
 
 
 
-const Busitem = ({number, from, to, Totalseats, id, date, price})=>{
+const Busitem = ({number, from, to, Totalseats, id, date, price, booked})=>{
     const handledelete = (id)=>{
         deletebus(id).then((res)=>console.log(res)).catch((err)=>alert("Deletion unsuccessful"));
         alert("Deleted bus successfully");
@@ -22,7 +22,7 @@ const Busitem = ({number, from, to, Totalseats, id, date, price})=>{
     };
     
     return (
-        <Card sx={{ margin:3, Width: 140, height: 200, color:"#03a9f4", backgroundColor:"lightcyan",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
+        <Card sx={{ margin:3, Width: 140, height: 220, color:"#03a9f4", backgroundColor:"lightcyan",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
   
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -34,6 +34,7 @@ const Busitem = ({number, from, to, Totalseats, id, date, price})=>{
          {/* <b>Totalseats : </b>{Totalseats}<br/> */}
          <b>date : </b> {new Date(date).toDateString()} <br/>
          <b>Price : </b> {price} <br/>
+         <b>Available: </b> {Totalseats-booked} <br/>
         </Typography>
         
       </CardContent>

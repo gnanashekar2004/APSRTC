@@ -38,6 +38,20 @@ export const sendusersignuprequest = async(data, signup) =>{
     return resdata;
 };
 
+// export const senduserupdaterequest = async(id) =>{
+//     const res = await axios.put(`/user/${id}`, {
+//         username: data.username,
+//         password: data.password,
+//         email: data.email
+//     }).catch((err)=>alert("user already exists"));
+//     if(res.status!==200){
+//         console.log("Unexpected error occured");
+//         return null;
+//     };
+//     const resdata = await res.data;
+//     return resdata;
+// };
+
 export const adminloginrequest = async(data) =>{
     const res = await axios.post("/admin/login", {
         username: data.username,
@@ -182,6 +196,17 @@ export const editbus = async({id},data)=>{
         Totalseats: data.Totalseats,
         date: data.date,
         price: data.price
+    }).catch((err)=>console.log(err));
+    if(res.status!==200){
+        return console.log("Unexpected Error!!");
+    }
+    const resdata = await res.data;
+    return resdata;
+};
+
+export const updatebookedbus = async({id},data)=>{
+    const res = await axios.put(`/bus/booked/${id}`,{
+        booked: data.booked
     }).catch((err)=>console.log(err));
     if(res.status!==200){
         return console.log("Unexpected Error!!");

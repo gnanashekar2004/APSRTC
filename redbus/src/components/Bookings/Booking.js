@@ -1,7 +1,7 @@
 import { Typography, Box, FormLabel, TextField, Button } from "@mui/material";
 import React, { useState, useEffect, Fragment } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getbusdetails, newbooking } from "../../api-helpers/api-helpers";
+import { getbusdetails, newbooking, updatebookedbus } from "../../api-helpers/api-helpers";
 //import Payment from "../Payment";
 import visa from './visa.png';
 
@@ -52,7 +52,7 @@ const Booking = ()=>{
         if(!check(e)){
             return;
         }
-        if(bus.Totalseats<inputs.seatnumber){
+        if(bus.Totalseats-bus.booked<inputs.seatnumber){
             alert("seats not available");
         }else if(inputs.seatnumber<=0){
             alert("Invalid number of seats");
@@ -62,10 +62,10 @@ const Booking = ()=>{
             }
             else{
                 console.log(inputs);
-                // <Payment seatnumber={inputs.seatnumber} date={bus.date} id={bus._id} from={bus.from} to={bus.to} number={bus.number} />
-                // navigate('/payment');
                 newbooking({...inputs,bus:bus._id, date:bus.date, busnumber:bus.number, from:bus.from, to:bus.to, fare:fare}).then((res)=>console.log(res))
                 .catch((err)=>alert("Booking unsuccessful"));
+                let data={booked:Number(bus.booked)+Number(inputs.seatnumber)};
+                updatebookedbus({id:bus._id},data).then((res)=>console.log(res)).catch((err)=>console.log(err));
                 alert("Booking succesful");
                 navigate("/user");
             }
@@ -82,7 +82,6 @@ const Booking = ()=>{
                     Date: {new Date(bus.date).toDateString()}<br/>
                     Available: ({bus.Totalseats - bus.booked}) seats <br/>
                     Price: {bus.price}<br/>
-                    
                 </Typography>
                 <Box width={"50%"} paddingTop={3} margin={'auto'} sx={{bgcolor:"lavender"}}>
                 <form onSubmit={handleSubmit} >
@@ -113,7 +112,7 @@ const Booking = ()=>{
                         type={"text"} 
                         margin="normal"
                         variant="standard" required/>
-                    <Box sx={{backgroundImage:{visa}}} margin={'auto'} ></Box>
+                    <img src={visa} width={"30%"}></img>
                     <FormLabel>
                             Card number
                         </FormLabel>
