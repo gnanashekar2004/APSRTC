@@ -94,6 +94,7 @@ const Adminprofile = ()=>{
                                             Bus Number: {booking.busnumber}<br/>
                                             From: {booking.from} <br/>  To: {booking.to} <br/>
                                             Amount paid: {booking.fare}
+                                            Seat numbers: {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
                                         </ListItemText>
                                     </ListItem>
                                 ))}

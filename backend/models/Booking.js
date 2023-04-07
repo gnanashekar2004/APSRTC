@@ -35,7 +35,10 @@ const bookingschema = new Schema({
     fare: {
         type: Number,
         required: true
-    }
+    },
+    reserved: [{
+        type: Number
+    }]
 });
 
 export default mongoose.model("Booking", bookingschema);

@@ -45,7 +45,9 @@ const Booking = ()=>{
             alert("not a valid card number");
             return false;
         }
-    }
+    };
+    const reserved = [];
+
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(inputs);
@@ -62,7 +64,10 @@ const Booking = ()=>{
             }
             else{
                 console.log(inputs);
-                newbooking({...inputs,bus:bus._id, date:bus.date, busnumber:bus.number, from:bus.from, to:bus.to, fare:fare}).then((res)=>console.log(res))
+                for(let i=0; i<inputs.seatnumber; i++){
+                    reserved[i] = Number(bus.booked) + Number(i) + 1;
+                }
+                newbooking({...inputs,bus:bus._id, date:bus.date, busnumber:bus.number, from:bus.from, to:bus.to, fare:fare, reserved:reserved}).then((res)=>console.log(res))
                 .catch((err)=>alert("Booking unsuccessful"));
                 let data={booked:Number(bus.booked)+Number(inputs.seatnumber)};
                 updatebookedbus({id:bus._id},data).then((res)=>console.log(res)).catch((err)=>console.log(err));
@@ -99,7 +104,8 @@ const Booking = ()=>{
                         name="seatnumber"
                         type={"Number"} 
                         margin="normal"
-                        variant="standard"/>
+                        variant="standard" 
+                         />
                     <Typography padding={3} fontFamily="georgia" varient="h4" textAlign={"center"}>
                         Total Fare: {fare} <br />
                         <b>Payment Details</b>
