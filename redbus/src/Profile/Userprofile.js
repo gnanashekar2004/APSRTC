@@ -3,7 +3,17 @@ import { deletebooking, getbookingsofuser, getuserbyid } from "../api-helpers/ap
 import { Box, List, ListItem, ListItemText, Typography, IconButton } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useractions } from "../store";
+import { deleteuser } from "../api-helpers/api-helpers";
+
 const Userprofile = ()=>{
+    const dispatch = useDispatch();
+    const logout = ()=>{
+        dispatch(useractions.logout());
+    }
+    const navigate = useNavigate();
     const [bookings, setbookings] = useState();
     useEffect(()=>{
         getbookingsofuser().then((res)=>setbookings(res.bookings)).catch((err)=>console.log(err));
@@ -18,6 +28,13 @@ const Userprofile = ()=>{
         deletebooking(id).then((res)=>console.log(res)).catch((err)=>console.log("Deletion Unsuccessful"));
         alert("Deleted booking successfully");
         window.location.reload(false);
+    };
+    const ID = localStorage.getItem("userid");
+    const handleDelete = (id)=>{
+        logout(false);
+        deleteuser(id).then((res)=>console.log(res)).catch((err)=>console.log(alert("Unsuccessful deletion")));
+        alert("deleted user successfully");
+        navigate("/");
     };
     return (
         <Box width={'100%'} display={"flex"} >
@@ -36,6 +53,12 @@ const Userprofile = ()=>{
                     </Typography>
                     <Typography padding={1} width={"auto"} textAlign={"center"} border={'1px solid #ccc'} borderRadius={6} >
                         Total bookings : {user.bookings.length}
+                    </Typography>
+                    <Typography padding={1} width={"auto"} textAlign={"center"} border={'1px solid #ccc'} borderRadius={6} >
+                        Delete Account
+                        <IconButton color="error" onClick={()=>handleDelete(ID)} >
+                            <DeleteForeverIcon />
+                        </IconButton>
                     </Typography>
                 </Box>
 
@@ -63,6 +86,7 @@ const Userprofile = ()=>{
                                             Bus Number: {booking.busnumber}<br/>
                                             From: {booking.from}<br/> To: {booking.to} <br/>
                                             Amount paid: {booking.fare} <br/>
+                                            Seat numbers: {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
                                         </ListItemText>
                                         <IconButton color="error" onClick={()=>handledelete(booking._id)}>
                                             <DeleteForeverIcon />
