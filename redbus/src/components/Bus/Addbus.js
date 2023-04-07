@@ -14,8 +14,8 @@ const Addbus = ()=>{
     const check = (e)=>{
         console.log(e);
         if(e.target[0].value.match(/^(?:([0-9]{3}|[0-9]{4})|[0-9]{5})$/)){
-            if(e.target[3].value.match(/^(?:[1-9])$/)){
-                if(e.target[5].value.match(/^(?:[1-9])$/)){
+            if(e.target[3].value > 0){
+                if(e.target[5].value > 0){
                     if(new Date(e.target[4].value) < dat){
                         alert("Date incorrect");
                         return false;
@@ -39,8 +39,6 @@ const Addbus = ()=>{
     const handleSubmit = (e)=>{
         e.preventDefault();
         if(!check(e)){
-            return;
-        }else{
             return;
         }
         console.log(inputs);
