@@ -9,15 +9,15 @@ import LoopIcon from '@mui/icons-material/Loop';
 import classes from './Homepage.module.css';
 
 const Homepage = () => {
-    const mystyle = {
-        backgroundImage: `url(${img})`,
-        width: '100%',
-        height: '100vh',
-        marginTop: '-10vh',
-        backgroundsize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        zindex: -1
-    };
+    // const mystyle = {
+    //     backgroundImage: `url(${img})`,
+    //     width: '100%',
+    //     height: '100vh',
+    //     marginTop: '-10vh',
+    //     backgroundsize: 'cover',
+    //     backgroundRepeat: 'no-repeat',
+    //     zindex: -1
+    // };
     const [DAT, setDAT] = useState([]);
     const [D, setD] = useState();
     const [buse, setbuses] = useState([]);
@@ -46,9 +46,11 @@ const Homepage = () => {
 
 
     return (
-        <Box sx={mystyle} className={classes.container} >
+        <div className={classes.base}>
+            <div className={classes.bgImg}></div>
+        <Box className={classes.container} >
             <div className={classes.searchcard} >
-                <Box margin={"auto"} width="90%" display={"flex"} flexDirection={"row"} justifyContent={'space-between'}>
+                <Box margin={"auto"} width="90%" display={"flex"} flexDirection={"row"} justifyContent={'space-between'} marginBottom={"4vh"} marginTop={"4vh"}>
                     <Box sx={{ backgroundColor: "#F2F2F0", borderRadius: "5px" }}>
                         <Autocomplete
                             disablePortal
@@ -73,16 +75,13 @@ const Homepage = () => {
                         />
                     </Box>
                 </Box>
-                <Box margin={"auto"} width="90%" display={'flex'} flexDirection={'column'} sx={{ backgroundColor: "#F2F2F0", borderRadius: "5px" }} >
+                <Box margin={"auto"} width="90%" display={'flex'} flexDirection={'column'} marginBottom={"4vh"} sx={{ backgroundColor: "#F2F2F0", borderRadius: "5px" }} >
                     {/* <FormLabel sx={{ fontFamily: "verdana", color: "#898989", backgroundColor: "inherit" }} >Date of journey</FormLabel> */}
                     <TextField onChange={(e) => setD([e.target.name] = e.target.value)} name="date" variant="standard" margin="normal" type="date" sx={{ backgroundColor: "inherit" }} >
                     </TextField>
                 </Box>
-                <Box margin={'auto'}>
+                <Box margin={'auto'} marginBottom={"2vh"}>
                     <Button type='submit' onClick={handlesubmit} sx={{ backgroundColor: "#F24141", color: "white", borderRadius: "0%", width: "15vw", height: "8vh", fontSize: "1.2rem" }}>Search bus</Button>
-                </Box>
-                <Box width={"80%"} margin="auto" display={"flex"} justifyContent="center" flexWrap={"wrap"}>
-                    {DAT && DAT.map((bus, index) => <Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price} />)}
                 </Box>
             </div>
             <div className={classes.text}>
@@ -91,6 +90,12 @@ const Homepage = () => {
                 <p style={{ color: "#FF0000", fontSize: "2.4rem", fontWeight: "700", marginTop: "10px" }}>The smarter way to travel</p>
             </div>
         </Box>
+        <div className={classes.list}>
+            <Box width={"80%"} margin="auto" display={"flex"} justifyContent="center" flexWrap={"wrap"}>
+                    {DAT && DAT.map((bus, index) => <Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price} />)}
+                </Box>
+            </div>
+        </div>
     );
 };
 
