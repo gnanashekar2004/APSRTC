@@ -33,7 +33,7 @@ const Homepage = () => {
     }, [buse, froms, tos]);
     console.log(froms);
     console.log(tos);
-
+//pavan simma
     const handlesubmit = () => {
         const data = { from: F, to: T, date: D };
         if (!F && !T && !D) {
