@@ -87,7 +87,7 @@ const Homepage = () => {
             </div>
             <div className={classes.text}>
                 <p style={{ color: "#590A18", fontSize: "4rem", fontWeight: "700", margin: "0" }}>Get On <span style={{ color: "#000000", fontSize: "5.5rem" }}>Board.</span></p>
-                <p style={{ color: "white", fontSize: "1.8rem", fontWeight: "600", margin: "0" }}>with Online Bus booking system</p>
+                <p style={{ color: "white", fontSize: "1.8rem", fontWeight: "600", margin: "0" }}>with Online Bus Ticket booking system</p>
                 <p style={{ color: "#FF0000", fontSize: "2.4rem", fontWeight: "700", marginTop: "10px" }}>The smarter way to travel</p>
             </div>
         </Box>

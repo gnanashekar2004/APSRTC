@@ -67,7 +67,9 @@ export const newbooking = async(data)=>{
         to: data.to,
         seatnumber: data.seatnumber,
         date: data.date,
-        user: localStorage.getItem("userid")
+        user: localStorage.getItem("userid"),
+        fare: data.fare,
+        booked: 0
     }).catch((err)=>console.log(err));
     if(res.status!==200){
         return console.log("Unexpected Error");

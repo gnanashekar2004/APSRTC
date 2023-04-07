@@ -55,13 +55,14 @@ const Userprofile = ()=>{
                         >
                             <List>
                                 {bookings.map((booking, index)=>(
-                            
-                                    <ListItem sx={{bgcolor: "#00d386",color:"white",textAlign:"center",margin:1}}>
+                                    // sx={{bgcolor: "#00d386",color:"white",textAlign:"center",margin:1}}
+                                    <ListItem sx={{ margin:3, Width: 140, height: 200, color:"black", backgroundColor:"#00d386",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}} >
                                         <ListItemText sx={{margin:1,width:"auto",textAlign:"left"}} >
                                             Date: {new Date(booking.date).toDateString()}<br/>
                                             No. of seats: {booking.seatnumber}<br/>
                                             Bus Number: {booking.busnumber}<br/>
-                                            From: {booking.from}<br/> To: {booking.to}
+                                            From: {booking.from}<br/> To: {booking.to} <br/>
+                                            Amount paid: {booking.fare} <br/>
                                         </ListItemText>
                                         <IconButton color="error" onClick={()=>handledelete(booking._id)}>
                                             <DeleteForeverIcon />

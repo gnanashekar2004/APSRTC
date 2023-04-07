@@ -8,7 +8,7 @@ export const addbus = async(req,res,next)=>{
         return res.status(404).json({message:"Token not found"});
     }
     const {number, from, to, Totalseats, bookings, date, price} = req.body;
-    if(!number && !from && from.trim()==="" && !to && to.trim()==="" && !Totalseats && !bookings && bookings.trim()==="" && !date && date.trim()==="" && !price && price.trim()===""){
+    if(!number && !from && from.trim()==="" && !to && to.trim()==="" && !Totalseats && !bookings && bookings.trim()==="" && !date && date.trim()==="" && !price && price.trim()===""  ){
         return res.status(422).json({message:"Invalid inputs"});
     }
     let adminid;
@@ -29,7 +29,7 @@ export const addbus = async(req,res,next)=>{
     if(adminid){
         let bus;
         try{
-            bus = new Bus({number, from, to, Totalseats, bookings, date: new Date(`${date}`), price});
+            bus = new Bus({number, from, to, Totalseats, bookings, date: new Date(`${date}`), price, booked:0 });
             bus = await bus.save();
         }catch(err){
             return console.log(err);
@@ -152,21 +152,21 @@ export const deletebus = async(req, res, next)=>{
 
 export const updatebus = async(req,res,next)=>{
     const id = req.params.id;
-    const {number, Totalseats, from, to, date, price} = req.body;
+    const {number, Totalseats, from, to, date, price, booked} = req.body;
     // if(!number && number.trim()==="" && Totalseats && Totalseats.trim()==="" && !from && from.trim()==="" && !to && to.trim()==="" && !price && price.trim()==="" && !date && date.trim()===""){
     //     return res.status(422).json({message:"Invalid Inputs"});
     // }
     let bus;
     if(date){
         try{
-            bus = await Bus.findByIdAndUpdate(id,{number, Totalseats,from, to, date: new Date(`${date}`), price})
+            bus = await Bus.findByIdAndUpdate(id,{number, Totalseats,from, to, date: new Date(`${date}`), price, booked})
         }catch(err){
             return console.log(err);
         }
     }
     else{
         try{
-            bus = await Bus.findByIdAndUpdate(id,{number, Totalseats,from, to, price})
+            bus = await Bus.findByIdAndUpdate(id,{number, Totalseats,from, to, price, booked: booked})
         }catch(err){
             return console.log(err);
         }

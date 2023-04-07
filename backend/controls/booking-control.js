@@ -4,8 +4,8 @@ import Bus from "../models/Bus";
 import User from "../models/User";
 
 export const newbooking = async(req, res, next)=>{
-    const{bus, date, busnumber, from ,to, seatnumber, user} = req.body;
-    if(!bus && bus.trim()==="" && !date && date.trim()==="" && !seatnumber && seatnumber.trim()==="" && !user && user.trim()==="" && !busnumber && busnumber.trim()==="" && !from && from.trim()==="" && !to && to.trim()===""){
+    const{bus, date, busnumber, from ,to, seatnumber, user, fare} = req.body;
+    if(!bus && bus.trim()==="" && !date && date.trim()==="" && !seatnumber && seatnumber.trim()==="" && !user && user.trim()==="" && !busnumber && busnumber.trim()==="" && !from && from.trim()==="" && !to && to.trim()==="" && !fare && fare.trim()==="" ){
         return res.status(422).json({message:"Invalid inputs"});
     }
     let existingbus;
@@ -33,7 +33,8 @@ export const newbooking = async(req, res, next)=>{
             to,
             date: new Date(`${date}`),
             seatnumber,
-            user
+            user,
+            fare
         });
         const session = await mongoose.startSession();
         session.startTransaction();
