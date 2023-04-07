@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, FormLabel } from "@mui/material";
-import img from "./img.png";
+import { Box, Button} from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { getallbuses, searchbus } from '../api-helpers/api-helpers';
@@ -9,15 +8,6 @@ import LoopIcon from '@mui/icons-material/Loop';
 import classes from './Homepage.module.css';
 
 const Homepage = () => {
-    // const mystyle = {
-    //     backgroundImage: `url(${img})`,
-    //     width: '100%',
-    //     height: '100vh',
-    //     marginTop: '-10vh',
-    //     backgroundsize: 'cover',
-    //     backgroundRepeat: 'no-repeat',
-    //     zindex: -1
-    // };
     const [DAT, setDAT] = useState([]);
     const [D, setD] = useState();
     const [buse, setbuses] = useState([]);
@@ -92,7 +82,7 @@ const Homepage = () => {
         </Box>
         <div className={classes.list}>
             <Box width={"80%"} margin="auto" display={"flex"} justifyContent="center" flexWrap={"wrap"}>
-                    {DAT && DAT.map((bus, index) => <Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price} />)}
+                    {DAT && DAT.map((bus, index) => <Busitem key={index} number={bus.number} from={bus.from} to={bus.to} Totalseats={bus.Totalseats} id={bus._id} date={bus.date} price={bus.price} booked={bus.booked} />)}
                 </Box>
             </div>
         </div>

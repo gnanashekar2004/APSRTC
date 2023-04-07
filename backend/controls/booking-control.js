@@ -60,10 +60,12 @@ export const deletebooking = async(req, res, next)=>{
     try{
         booking = await Booking.findByIdAndRemove(id).populate("user bus");
         console.log(booking);
+        let book = booking.seatnumber;
         const session = await mongoose.startSession();
         session.startTransaction();
         await booking.user.bookings.pull(booking);
         await booking.bus.bookings.pull(booking);
+        await Bus.findByIdAndUpdate(booking.bus._id,{booked:Number(booking.bus.booked)-Number(book)})
         await booking.bus.save({session});
         await booking.user.save({session});
         session.commitTransaction();

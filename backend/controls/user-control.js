@@ -64,6 +64,25 @@ export const updateuser = async(req, res, next)=>{
     return res.status(200).json({id:user._id,message:"Updated user succesfully"});
 };
 
+// export const forgetuser = async(req, res, next)=>{
+//     const id = req.params.id;
+//     const {username, password, email} = req.body;
+//     if(!username && username.trim()==="" && !password && password.trim()==="" && !email && email.trim()===""){
+//         return res.status(422).json({message:"Invalid Inputs"});
+//     }
+//     const hashedpassword = bcrypt.hashSync(password);
+//     let user;
+//     try{
+//         user = await User.findByIdAndUpdate(id, {username, password:hashedpassword, email});
+//     }catch(err){
+//         return console.log(err);
+//     }
+//     if(!user){
+//         return res.status(300).json({message:"Error user!!"});
+//     }
+//     return res.status(200).json({id:user._id,message:"Updated user succesfully"});
+// };
+
 export const deleteuser = async(req, res, next)=>{
     const id = req.params.id;
     let user;
