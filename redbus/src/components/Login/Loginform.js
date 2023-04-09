@@ -66,19 +66,19 @@ const Loginform = ({onSubmit, isadmin})=>{
                     <FormLabel sx={labelstyle}>
                         Username
                     </FormLabel>
-                    <TextField value={inputs.username} onChange={handleChange} margin={"normal"} variant="standard" name="username" required />
+                    <TextField value={inputs.username} onChange={handleChange} margin={"normal"} variant="standard" name="username" required sx={{ width: '100%' }}/>
                     { isSignup &&
                         <Box>
                         <FormLabel sx={labelstyle}>
                         Email
                     </FormLabel>
-                    <TextField value={inputs.email} onChange={handleChange} margin={"normal"} variant="standard" name="email" required />
+                    <TextField value={inputs.email} onChange={handleChange} margin={"normal"} variant="standard" name="email" required sx={{ width: '100%' }}/>
                     </Box>
                     }
                     <FormLabel>
                         Password
                     </FormLabel>
-                    <TextField value={inputs.password} onChange={handleChange} margin="normal" variant="standard" type={"password"} name="password" required/>
+                    <TextField value={inputs.password} onChange={handleChange} margin="normal" variant="standard" type={"password"} name="password" required sx={{ width: '100%' }}/>
                     {!isadmin && isSignup && <>
                         <Button sx={{mt:2, borderRadius:10, bgcolor:"#2b2d42"}} variant="contained" type="submit" fullWidth>Signup </Button>
                     </>
