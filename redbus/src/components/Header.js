@@ -5,6 +5,7 @@ import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 //import { getallbuses } from "../api-helpers/api-helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { adminactions, useractions } from "../store";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Header = ()=>{
@@ -33,8 +34,8 @@ const Header = ()=>{
                         </>)}
                         {isuserloggedin && (
                             <>
-                                <Tab LinkComponent={Link} to="/user" label="Profile" value={2} onChange={(e,val)=>setValue(val)} />
-                                <Tab onClick={()=>logout(false)} LinkComponent={Link} to="/" label="Logout" value={3} onChange={(e,val)=>setValue(0)} />                   
+                                                                <Tab onClick={()=>logout(false)} LinkComponent={Link} to="/" label="Logout" value={3} onChange={(e,val)=>setValue(0)} /> 
+                                <Tab LinkComponent={Link} to="/user" icon={<AccountCircleIcon sx={{fontSize: '2.5rem'}}/>} value={2} onChange={(e,val)=>setValue(val)} />                  
                             </>
                         )}
                         {isadminloggedin && (
