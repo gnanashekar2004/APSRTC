@@ -1,13 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { deleteuser, getallusers, getallbookings } from "../api-helpers/api-helpers";
+import { deleteuser, getallusers, getallbookings, getuserbybooking } from "../api-helpers/api-helpers";
 import { Box, List, ListItem, ListItemText, Typography, IconButton } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Adminprofile = ()=>{
     const [bookings, setbookings] = useState();
+    const [usr, setusr] = useState([]);
     useEffect(()=>{
         getallbookings().then((res)=>setbookings(res.bookings)).catch((err)=>console.log(err));
     },[]);
+    console.log("USRS=",usr);
     console.log(bookings);
     const [users, setusers] = useState([]);
     useEffect(()=>{
@@ -72,6 +74,7 @@ const Adminprofile = ()=>{
             }
             </Box>
             <Box>
+            
             {
                 bookings && bookings.length>0 && (
                     <Fragment>
@@ -86,7 +89,7 @@ const Adminprofile = ()=>{
                         >
                             <List>
                                 {bookings.map((booking, index)=>(
-                            
+                                    getuserbybooking(booking.user).then((res)=>usr[index]=res.user.username).catch((err)=>console.log(err)),
                                     <ListItem sx={{ margin:3, Width: 140, height: 200, color:"#03a9f4", backgroundColor:"lightcyan",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
                                         <ListItemText sx={{margin:1,width:"auto",textAlign:"left", color:'green' }} >
                                             Date: {new Date(booking.date).toDateString()}<br/>
@@ -95,6 +98,7 @@ const Adminprofile = ()=>{
                                             From: {booking.from} <br/>  To: {booking.to} <br/>
                                             Amount paid: {booking.fare} <br />
                                             Seat numbers: {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
+                                            {/* Booked by : {usr[index]} <br /> */}
                                         </ListItemText>
                                     </ListItem>
                                 ))}

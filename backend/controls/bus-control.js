@@ -206,3 +206,16 @@ export const bookedupdate = async(req,res,next)=>{
     }
     return res.status(200).json({message:"Updated buses succesfully"});
 };
+
+export const totalupdate = async(req,res,next)=>{
+    let bus;
+    try{
+        bus = await Bus.updateMany({ Totalseats: 40})
+    }catch(err){
+        return console.log(err);
+    }
+    if(!bus){
+        return res.status(300).json({message:"Error updating bus!!"});
+    }
+    return res.status(200).json({message:"Updated total seats succesfully"});
+};

@@ -38,6 +38,7 @@ const Forget = ()=>{
     emailjs.send(`service_cxgydkb`, `template_el9p5l8`, temp, `rleDP9eS6hWLfzUYl`)
         .then((result) => {
             //window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+            alert("Email sent");
             console.log(result);
         }, (error) => {
             console.log(error.text);
