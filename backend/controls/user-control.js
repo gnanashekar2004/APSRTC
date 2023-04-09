@@ -47,14 +47,14 @@ export const signup = async(req, res, next)=>{
 
 export const updateuser = async(req, res, next)=>{
     const id = req.params.id;
-    const {username, password, bookings} = req.body;
-    if(!username && username.trim()==="" && !password && password.trim()==="" && !bookings && bookings.trim()===""){
+    const {username, email, password} = req.body;
+    if(!username && username.trim()==="" && !password && password.trim()==="" && !email && email.trim()==="" ){
         return res.status(422).json({message:"Invalid Inputs"});
     }
     const hashedpassword = bcrypt.hashSync(password);
     let user;
     try{
-        user = await User.findByIdAndUpdate(id, {username, password:hashedpassword, bookings});
+        user = await User.findByIdAndUpdate(id, {username, email:email, password:hashedpassword});
     }catch(err){
         return console.log(err);
     }
@@ -62,6 +62,23 @@ export const updateuser = async(req, res, next)=>{
         return res.status(300).json({message:"Error user!!"});
     }
     return res.status(200).json({id:user._id,message:"Updated user succesfully"});
+};
+
+export const getusername = async(req, res, next) => {
+    const {email} = req.body;
+    if(!email && email.trim()===""){
+        return res.status(422).json({message:"Invalid Inputs"});
+    }
+    let user;
+    try{
+        user = await User.findOne({email:email});
+    }catch(err){
+        return console.log(err);
+    }
+    if(!user){
+        return res.status(300).json({message:"User not found"});
+    }
+    return res.status(200).json({user});
 };
 
 // export const forgetuser = async(req, res, next)=>{
