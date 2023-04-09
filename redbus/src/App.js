@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import{Route, Routes, json} from 'react-router-dom';
+import{Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 import Bus from "./components/Bus/Bus";
@@ -15,6 +15,8 @@ import { useEffect } from 'react';
 import { adminactions, useractions } from './store';
 import Userprofile from './Profile/Userprofile';
 //import Payment from './components/Payment';
+import Forget from './components/Login/Forget'
+//import Verification from './components/Login/Verification'
 
 
 
@@ -45,7 +47,8 @@ function App() {
         <Route path='/add' element={<Addbus />} />
         <Route path='/edit' element={<Editbus />} />
         <Route path='/booking/:id' element={<Booking />} />
-        {/* <Route path='/payment' element={<Payment />} /> */}
+        <Route path='/forget' element={<Forget />} />
+        {/* <Route path='/verify' element={<Verification />} /> */}
       </Routes>
     </section>
 

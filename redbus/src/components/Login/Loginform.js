@@ -43,7 +43,7 @@ const Loginform = ({onSubmit, isadmin})=>{
         onSubmit({inputs, signup: isadmin? false : isSignup});
      };
     return (
-        <Dialog PaperProps={{style:{borderRadius:20}}} open={true}>
+        <Dialog PaperProps={{style:{borderRadius:20, minHeight:"95%"}}} open={true}>
             <Box sx={{ml:"auto", padding: 1}}>
                 <IconButton LinkComponent={Link} to="/">
                     <CloseRoundedIcon />
@@ -92,6 +92,8 @@ const Loginform = ({onSubmit, isadmin})=>{
                         <Button onClick={()=>setisSignup(!isSignup)} sx={{mt:2, borderRadius:10}}  fullWidth>
                       Switch to  {isSignup ? "Login" : "Signup"}
                      </Button>
+                     <Button sx={{mt:2, ml:'auto', borderRadius:5, width:'50%', textDecorationLine:'underline', fontSize:10}} LinkComponent={Link} to={'/forget'}  >Forget password </Button>
+
                     </> }
                 </Box>
             </form>
