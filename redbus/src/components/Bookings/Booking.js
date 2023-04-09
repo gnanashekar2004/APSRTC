@@ -23,7 +23,7 @@ const Booking = ()=>{
     const handleChange = (e)=>{
         console.log(e);
         setinputs((prevState)=>({...prevState,[e.target.name]:e.target.value}))
-        setfare(bus.price*e.nativeEvent.data);
+        setfare(bus.price*e.target.value);
         console.log(fare);
     };
     const check = (e)=>{

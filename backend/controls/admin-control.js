@@ -9,7 +9,7 @@ export const addadmin = async(req,res,next)=>{
     }
     let existingadmin;
     try{
-        existingadmin = await Admin.findOne({});
+        existingadmin = await Admin.findOne({username:username});
     }catch(err){
         return console.log(err);
     }
@@ -37,16 +37,16 @@ export const loginadmin = async(req,res,next)=>{
     }
     let existingadmin;
     try{
-        existingadmin = await Admin.findOne({});
+        existingadmin = await Admin.findOne({username:username});
     }catch(err){
         return console.log(err);
     }
     if(!existingadmin){
         return res.status(420).json({message:"Admin not found"});
     }
-    if(existingadmin.username!=username){
-        return res.status(302).json({message:"Incorrect admin username"});
-    }
+    // if(existingadmin.username!=username){
+    //     return res.status(302).json({message:"Incorrect admin username"});
+    // }
     const ispasswordcorrect = bcrypt.compareSync(password, existingadmin.password);
     if(!ispasswordcorrect){
         return res.status(302).json({message:"Incorrect admin password"});

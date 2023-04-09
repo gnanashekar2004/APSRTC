@@ -114,6 +114,16 @@ export const getuserbyid = async()=>{
     return resdata;
 };
 
+export const getuserbybooking = async(id)=>{
+    const res = await axios.get(`/user/${id}`).catch((err)=>console.log(err));
+    if(res.status!==200){
+        return console.log("Unexpected Error");
+    }
+    const resdata = await res.data;
+    return resdata;
+};
+
+
 export const getusername = async(data) => {
     const res = await axios.put('/user/email/username', {
         email:data.email
