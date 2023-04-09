@@ -53,10 +53,10 @@ const Addbus = ()=>{
         <div>
             <form onSubmit={handleSubmit}>
             <Box width={"50%"} padding={10} margin={"auto"} display={"flex"} flexDirection={"column"} boxShadow={'10px 10px 20px #ccc'}>
-                 <Typography textAlign={"center"} fontFamily={"verdana"} variant="h5">
-                Add a new Bus
+                 <Typography textAlign={"center"} fontFamily={"verdana"} sx={{textDecoration: 'underline'}} variant="h4">
+                ADD NEW BUS
                 </Typography>
-                <FormLabel sx={labelprops} >
+                <FormLabel sx={labelprops}>
                     Bus Number (100~input~99999)
                 </FormLabel>
                 <TextField value={inputs.number} onChange={handleChange} name="number" variant="standard" margin="normal" type="Number" required >
