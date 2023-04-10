@@ -10,28 +10,36 @@ import { getusername, senduserupdaterequest } from "../../api-helpers/api-helper
 
 const labelstyle = {mt: 1, mb: 1};
 
+function generateRandomToken() {
+    var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var token = "";
+    for (var i = 0; i < 4; i++) {
+        var randomIndex = Math.floor(Math.random() * alphabet.length);
+        token += alphabet[randomIndex];
+    }
+    return token;
+}
+const r = generateRandomToken();
+
 const Forget = ()=>{
     const navigate = useNavigate();
     const [inputs, setinputs] = useState({
         password:"",
         email:"",
         token:""
-     });
-     const rand = () => {
-        return Math.random().toString(4);
-      };
-     let r = String(rand());
+     },[]);
+    
      const [isuser, setisuser] = useState("");
      const [isid, setisid] = useState("");
      const [istoken, setistoken] = useState(false);
     var temp = {
         to_name : localStorage.getItem("forgetuser"),
         html_message : "Your Token : ",
-        tkn: r,
+        tkn : r,
         subject : "Verify your email",
         to_email : localStorage.getItem("forgetemail"),
         from_name : "APSRTC"
-    }
+    };
     function sendEmail() {
     // temp.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
     console.log(temp);
@@ -50,15 +58,17 @@ const Forget = ()=>{
             [e.target.name] : e.target.value,
         }))
         console.log(e);
-        getusername({email:e.target.value}).then((res)=>(setisuser(res.user.username),setisid(res.user._id))).catch((err)=>console.log(err));
+        getusername({email:e.target.value}).then((res)=>(setisuser(res.user.username),setisid(res.user._id))).catch((setisuser("no user"),setisid("")));
         localStorage.setItem("forgetemail", e.target.value);
      };
      const handle = (e) =>{ //token
         setinputs((prevState)=>({
-            ...prevState,
+             ...prevState,
             [e.target.name] : e.target.value,
-        }))
+        }));
         console.log(e);
+        //console.log(r);
+        console.log(e.target.value);
         if(e.target.value===r){
             setistoken(true);
         }
@@ -125,7 +135,7 @@ const Forget = ()=>{
                     <FormLabel>
                        Verification Token (check your email)
                     </FormLabel>
-                    <TextField value={inputs.token} onChange={handle} margin="normal" variant="standard" type={"normal"} name="token" required/>
+                    <TextField value={inputs.token} onChange={handle} margin="normal" variant="standard" type={"password"} name="token" required/>
                     
                     { istoken && <>
                         <FormLabel>

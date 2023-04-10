@@ -92,9 +92,12 @@ const Loginform = ({onSubmit, isadmin})=>{
                         <Button onClick={()=>setisSignup(!isSignup)} sx={{mt:2, borderRadius:10}}  fullWidth>
                       Switch to  {isSignup ? "Login" : "Signup"}
                      </Button>
-                     <Button sx={{mt:2, ml:'auto', borderRadius:5, width:'50%', textDecorationLine:'underline', fontSize:10}} LinkComponent={Link} to={'/forget'}  >Forget password </Button>
-
                     </> }
+                    { !isSignup &&
+                        <>
+                          <Button sx={{mt:2, ml:'auto', borderRadius:5, width:'50%', textDecorationLine:'underline', fontSize:10}} LinkComponent={Link} to={'/forget'}  >Forget password </Button>
+                        </>
+                    }
                 </Box>
             </form>
         </Dialog>

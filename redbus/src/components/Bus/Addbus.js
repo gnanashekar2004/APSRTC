@@ -42,7 +42,7 @@ const Addbus = ()=>{
             return;
         }
         console.log(inputs);
-        addbus({...inputs}).then((res)=>(console.log(res.bus))).catch((err)=>(alert("Unsuccessful")));
+        addbus({...inputs}).then((res)=>alert("Added bus successfully")).catch((err)=>(alert("Unsuccessful")));
        // alert("Added bus successfully");
         navigate("/bus");
     };

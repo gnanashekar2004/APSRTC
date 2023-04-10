@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import {Link} from 'react-router-dom';
-import {AppBar, Box, Tabs, Tab, Toolbar, IconButton} from '@mui/material';
+import {AppBar, Box, Tabs, Tab, Toolbar, IconButton, Typography} from '@mui/material';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 //import { getallbuses } from "../api-helpers/api-helpers";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,7 @@ const Header = ()=>{
                     <DirectionsBusIcon style={{color:"white"}}/>
                     </IconButton>
                 </Box>
+                <Typography marginRight={'auto'} color={'white'}>APSRTC</Typography>
                 <Box paddingLeft={'50%'} display={'flex'}>
                     <Tabs textColor={"inherit"} indicatorColor={"secondary"} value={value} onChange={(e,val)=>setValue(val)}>
                         <Tab LinkComponent={Link} to="/" label="Home" value={0} onChange={(e,val)=>setValue(val)} />
