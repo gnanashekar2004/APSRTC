@@ -143,7 +143,7 @@ const Booking = ()=>{
                         type={"date"} 
                         margin="normal"
                         variant="standard" required/>
-                        <Button sx={{mt:2}} type="submit" >
+                        <Button sx={{mt:2, bgcolor:"green"}} type="submit" variant="contained" >
                             Book Now
                         </Button>
                     </Box>

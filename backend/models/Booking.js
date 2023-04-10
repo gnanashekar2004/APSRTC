@@ -38,7 +38,11 @@ const bookingschema = new Schema({
     },
     reserved: [{
         type: Number
-    }]
+    }],
+    username: {
+        type: String,
+        required: true
+    }
 });
 
 export default mongoose.model("Booking", bookingschema);

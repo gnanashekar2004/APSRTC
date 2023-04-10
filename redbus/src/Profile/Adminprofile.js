@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { deleteuser, getallusers, getallbookings, getuserbybooking } from "../api-helpers/api-helpers";
+import { deleteuser, getallusers, getallbookings} from "../api-helpers/api-helpers";
 import { Box, List, ListItem, ListItemText, Typography, IconButton } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -89,7 +89,6 @@ const Adminprofile = ()=>{
                         >
                             <List>
                                 {bookings.map((booking, index)=>(
-                                    getuserbybooking(booking.user).then((res)=>usr[index]=res.user.username).catch((err)=>console.log(err)),
                                     <ListItem sx={{ margin:3, Width: 140, height: 200, color:"#03a9f4", backgroundColor:"lightcyan",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}}>
                                         <ListItemText sx={{margin:1,width:"auto",textAlign:"left", color:'green' }} >
                                             <b>Date:</b> {new Date(booking.date).toDateString()}<br/>
@@ -98,7 +97,7 @@ const Adminprofile = ()=>{
                                             <b>From:</b> {booking.from} <br/>  <b>To:</b> {booking.to} <br/>
                                             <b>Amount paid:</b> {booking.fare} <br />
                                             <b>Seat numbers:</b> {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
-                                            {/* Booked by : {usr[index]} <br /> */}
+                                            <b>Booked by :</b> {booking.username} <br />
                                         </ListItemText>
                                     </ListItem>
                                 ))}
