@@ -81,12 +81,12 @@ const Userprofile = ()=>{
                                     // sx={{bgcolor: "#00d386",color:"white",textAlign:"center",margin:1}}
                                     <ListItem sx={{ margin:3, Width: 140, height: 200, color:"black", backgroundColor:"#00d386",borderRadius: 5, ":hover":{boxShadow: "10px 10px 20px #ccc"}}} >
                                         <ListItemText sx={{margin:1,width:"auto",textAlign:"left"}} >
-                                            Date: {new Date(booking.date).toDateString()}<br/>
-                                            No. of seats: {booking.seatnumber}<br/>
-                                            Bus Number: {booking.busnumber}<br/>
-                                            From: {booking.from}<br/> To: {booking.to} <br/>
-                                            Amount paid: {booking.fare} <br/>
-                                            Seat numbers: {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
+                                        <b>Date:</b> {new Date(booking.date).toDateString()}<br/>
+                                            <b>No. of seats:</b> {booking.seatnumber}<br/>
+                                            <b>Bus Number:</b> {booking.busnumber}<br/>
+                                            <b>From:</b> {booking.from} <br/>  <b>To:</b> {booking.to} <br/>
+                                            <b>Amount paid:</b> {booking.fare} <br />
+                                            <b>Seat numbers:</b> {booking.reserved && booking.reserved.map((SN, index)=><text>{SN}, </text>)} <br/>
                                         </ListItemText>
                                         <IconButton color="error" onClick={()=>handledelete(booking._id)}>
                                             <DeleteForeverIcon />
