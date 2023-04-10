@@ -13,6 +13,7 @@ const Header = ()=>{
     const isadminloggedin= useSelector((state)=>state.admin.isloggedin);
     const isuserloggedin= useSelector((state)=>state.user.isloggedin);
     const [value, setValue] = useState();
+    const [select, setSelect] = useState(0);
     const logout = (isadmin)=>{
         dispatch(isadmin? adminactions.logout():useractions.logout());
     }
@@ -36,14 +37,14 @@ const Header = ()=>{
                         {isuserloggedin && (
                             <>
                                 <Tab onClick={()=>logout(false)} LinkComponent={Link} to="/" label="Logout" value={3} onChange={(e,val)=>setValue(0)} /> 
-                                <Tab LinkComponent={Link} to="/user" icon={<AccountCircleIcon sx={{fontSize: '2.5rem'}}/>} value={2} onChange={(e,val)=>setValue(val)} />                  
+                                <Tab LinkComponent={Link} to="/user" icon={<AccountCircleIcon sx={{fontSize: '2.5rem'}}/>} value={4} onChange={(e,val)=>setValue(val)} />                  
                             </>
                         )}
                         {isadminloggedin && (
                             <>
                                 <Tab LinkComponent={Link} to="/add" label="Add Bus" value={2} onChange={(e,val)=>setValue(val)}/>
-                                <Tab onClick={()=>logout(true)} LinkComponent={Link} to="/" label="Signout" value={4} onChange={(e,val)=>setValue(0)}/> 
-                                <Tab LinkComponent={Link} to="/admin" icon={<AccountCircleIcon sx={{fontSize: '2.5rem'}}/>} value={2} onChange={(e,val)=>setValue(val)} />                                 
+                                <Tab onClick={()=>logout(true)} LinkComponent={Link} to="/" label="Signout" value={3} onChange={(e,val)=>setValue(0)}/> 
+                                <Tab LinkComponent={Link} to="/admin" icon={<AccountCircleIcon sx={{fontSize: '2.5rem'}}/>} value={4} onChange={(e,val)=>setValue(val)} />                                 
                             </>
                         )}
                          </Tabs>
