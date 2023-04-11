@@ -93,7 +93,7 @@ const Loginform = ({onSubmit, isadmin})=>{
                       Switch to  {isSignup ? "Login" : "Signup"}
                      </Button>
                     </> }
-                    { !isSignup &&
+                    { !isSignup && !isadmin &&
                         <>
                           <Button sx={{mt:2, ml:'auto', borderRadius:5, width:'50%', textDecorationLine:'underline', fontSize:10}} LinkComponent={Link} to={'/forget'}  >Forget password </Button>
                         </>
