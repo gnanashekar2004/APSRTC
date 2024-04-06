@@ -24,7 +24,7 @@ Software Development Life Cycle (SDLC): Various stages of SDLC were followed, in
 ### Backend:
 - Navigate to the server directory in the project.
 - Run npm install to install the necessary dependencies.
-- Run npm start to start the backend server. The server will run at http://localhost:4000.
+- Run npm start to start the backend server. The server will run at http://localhost:5000.
 ---
 ## Additional Notes:
 This project was completed as part of a course requirement and demonstrates the team's proficiency in developing full-stack web applications using modern technologies.
